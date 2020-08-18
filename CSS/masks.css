@@ -1,0 +1,94 @@
+* {
+    box-sizing: border-box;
+
+}
+
+body {
+    margin: 0;
+}
+
+nav {
+    display: flex;
+    background: #333333;
+    flex-direction: row-reverse;
+
+}
+
+
+ul  {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    display: flex; /* made unordered list a flex container */
+}
+nav a {
+    text-decoration: none;
+    color: white;
+    font-family: Verdana, serif;
+    display: inline-block; /* inline-block to increase clickable area beyond the text */
+    padding: 1em; /* increases clickable area of anchor tags on all sides by 1em */
+}
+nav a:hover {
+    background: black;
+}
+ nav ul li:nth-child(3) {
+    /*
+        this allows the last flex item to be right justified
+        by filling remaining space to the left of the flex item with margin
+    */
+    margin-left: auto;
+}
+
+.search {
+    display: flex;
+    align-items: center;
+
+
+
+}
+
+
+
+.card {
+    margin: .5em;
+    border-radius: 6px;
+    background: white;
+    width: 250px;
+    height: 350px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-around;
+}
+
+
+.craftyNurse {
+    align-items: center;
+    justify-content: center;
+    display: flex;
+    font-family: "Chalkboard SE", Serif;
+    font-size: 3em;
+    margin-top: 0;
+    margin-left: auto;
+}
+
+.text-section {
+    position: relative;
+    bottom: 1.5em;
+    font-family: Jaini, sans-serif;
+    font-weight: bold;
+
+}
+
+main {
+    width: 90%;
+    max-width: 1300px;
+    margin: 0 auto;
+    padding: 1em;
+    background: #4dcfc0;
+    min-height: 100vh;
+    /*display: flex;*/
+    /*flex-wrap: wrap;*/
+    justify-content: space-evenly;
+    align-content: center;
+}
