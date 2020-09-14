@@ -13,3 +13,40 @@ $('#exampleModal').on('show.bs.modal', function (event) {
     modal.find('.modal-title').text('New message to ' + recipient)
     modal.find('.modal-body input').val(recipient)
 })
+
+const receipt = document.getElementById("maskReceipt");
+const renderReceipt = ()=> {
+    let html = '';
+    cartItems.forEach((c,i)=>{
+        html+= renderItem(c,i);
+    })
+    receipt.innerHTML = html;
+    cartNotification.innerText = cartItems.length > 0 ?  cartItems.length.toString(): "";
+    return html;
+}
+
+
+let cartItems = [];
+const sizeSubmit = document.getElementById('toCart');
+const kids = document.getElementById('kids');
+const adult= document.getElementById('adult');
+
+
+
+
+const sizeCheck = ()=>{
+    let item = {};
+    item.name = masks;
+    if (kids.checked) {
+        item.size = "Kids"
+        item.price = 8.00;
+    }else if (adult.checked) {
+        item.size = "Adult";
+        item.price = 10.00;
+    }else{
+        return;
+    }
+    cartItems.push(item);
+    renderReceipt();
+}
+sizeSubmit.addEventListener('click',sizeCheck);
