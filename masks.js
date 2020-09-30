@@ -1,52 +1,62 @@
 "use strict";
 
-$('#myModal').on('shown.bs.modal', function () {
-    $('#myInput').trigger('focus')
-})
 
-$('#exampleModal').on('show.bs.modal', function (event) {
-    var button = $(event.relatedTarget) // Button that triggered the modal
-    var recipient = button.data('whatever') // Extract info from data-* attributes
-    // If necessary, you could initiate an AJAX request here (and then do the updating in a callback).
-    // Update the modal's content. We'll use jQuery here, but you could use a data binding library or other methods instead.
-    var modal = $(this)
-    modal.find('.modal-title').text('New message to ' + recipient)
-    modal.find('.modal-body input').val(recipient)
-})
+const cart = [];
 
-const receipt = document.getElementById("maskReceipt");
-const renderReceipt = ()=> {
-    let html = '';
-    cartItems.forEach((c,i)=>{
-        html+= renderItem(c,i);
-    })
-    receipt.innerHTML = html;
-    cartNotification.innerText = cartItems.length > 0 ?  cartItems.length.toString(): "";
-    return html;
-}
-
-
-let cartItems = [];
-const sizeSubmit = document.getElementById('toCart');
-const kids = document.getElementById('kids');
-const adult= document.getElementById('adult');
-
-
-
-
-const sizeCheck = ()=>{
-    let item = {};
-    item.name = masks;
-    if (kids.checked) {
-        item.size = "Kids"
-        item.price = 8.00;
-    }else if (adult.checked) {
-        item.size = "Adult";
-        item.price = 10.00;
-    }else{
-        return;
+function addItem(name, price) {
+    for (let i = 0; i < cart.length; i += 1) {
+        if (cart[i].name === name) {
+            cart[i].qty += 1
+            return
+        }
     }
-    cartItems.push(item);
-    renderReceipt();
+    const item = {name: name, price: price, qty: 1}
+    cart.push(item)
 }
-sizeSubmit.addEventListener('click',sizeCheck);
+
+function showItems() {
+    let qty = 0
+    for (let i = 0; i < cart.length; i += 1) {
+        qty += cart [i].qty;
+    }
+    console.log(`You have ${qty} items in your cart.`)
+
+    for (let i = 0; i < cart.length; i += 1) {
+        console.log(`${cart[i].name} $${cart[i].price} * ${cart[i].qty}`)
+    }
+
+    let total = 0 //store running total
+    for (let i = 0; i < cart.length; i += 1) {
+        total += cart[i].price * cart[i].qty
+    }
+    console.log(`Total in cart: $${total}`)
+}
+addItem('apple', 0.99)
+addItem('apple', 0.99)
+addItem('pizza', 4.99)
+showItems()
+// const sizeSubmit = document.getElementById('toCart');
+// const kids = document.getElementById('kids');
+// const adult= document.getElementById('adult');
+//
+//
+//
+//
+// const sizeCheck = ()=>{
+//     let item = {};
+//     item.name = masks;
+//     if (kids.checked) {
+//         item.size = "Kids"
+//         item.price = 8.00;
+//     }else if (adult.checked) {
+//         item.size = "Adult";
+//         item.price = 10.00;
+//     }else{
+//         return;
+//     }
+//     cartItems.push(item);
+//     renderReceipt();
+// }
+// sizeSubmit.addEventListener('click',sizeCheck);
+
+
