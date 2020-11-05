@@ -4,18 +4,32 @@
 const itemList = document.getElementById('item-list')
 const cartQty = document.getElementById('cart-qty')
 const cartTotal = document.getElementById('cart-total')
+const addForm = document.getElementById('add-form')
+const itemName = document.getElementById('item-name')
+const itemPrice = document.getElementById('item-price')
 
 const cart = [];
 
+//add form submit
+addForm.onsubmit = function (e) {
+    e.preventDefault()
+    const name = itemName.value
+    const price = itemPrice.value
+    addItem(name, price)
+}
+
+//Add Item
 function addItem(name, price) {
     for (let i = 0; i < cart.length; i += 1) {
         if (cart[i].name === name) {
             cart[i].qty += 1
+            showItems()
             return
         }
     }
     const item = {name, price, qty: 1}
     cart.push(item)
+    showItems()
 }
 
 function showItems() {
@@ -31,7 +45,7 @@ function showItems() {
         // const price = cart[i].price
         // const qty = cart[i].qty
 
-        const { name, price, qty} = cart[i]
+        const {name, price, qty} = cart[i]
 
         itemStr += `<li>
             ${name} 
