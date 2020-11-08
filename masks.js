@@ -13,8 +13,8 @@ const cart = [];
 //add form submit
 addForm.onsubmit = function (e) {
     e.preventDefault()
-    const name = itemName.value
-    const price = itemPrice.value
+    const name = itemName.value()
+    const price = itemPrice.value()
     addItem(name, price)
 }
 
